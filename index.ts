@@ -4,9 +4,16 @@ export { A_ARC_Context } from './src/global/A_ARC_Context.class';
 // ============ Export Global & Service Entities ============
 
 // ================== API ==================
-export * as A_AUTH_AppInteractions from './src/api/app-interactions';
-export * as A_AUTH_ServerCommands from './src/api/server-commands';
-export * as A_AUTH_ServerDelegate from './src/api/server-delegate';
+export * as A_ARC_AppInteractions from './src/api/app-interactions';
+export * as A_ARC_ServerCommands from './src/api/server-commands';
+export * as A_ARC_ServerDelegate from './src/api/server-delegate';
+
+// ================== LIB ==================
+export {
+    A_ARC_EntityMaskQueryBuilder,
+    A_ARC_MaskQueryBuilder
+} from './src/lib/A_ARC_MaskQueryBuilder.class'
+
 
 
 // ============ CONSTANTS Export ============

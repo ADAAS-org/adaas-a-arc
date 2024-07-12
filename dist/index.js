@@ -26,14 +26,18 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.A_ARC_CONSTANTS__ERROR_CODES = exports.A_ARC_CONSTANTS__DEFAULT_ERRORS = exports.A_AUTH_ServerDelegate = exports.A_AUTH_ServerCommands = exports.A_AUTH_AppInteractions = exports.A_ARC_Context = void 0;
+exports.A_ARC_CONSTANTS__ERROR_CODES = exports.A_ARC_CONSTANTS__DEFAULT_ERRORS = exports.A_ARC_MaskQueryBuilder = exports.A_ARC_EntityMaskQueryBuilder = exports.A_ARC_ServerDelegate = exports.A_ARC_ServerCommands = exports.A_ARC_AppInteractions = exports.A_ARC_Context = void 0;
 var A_ARC_Context_class_1 = require("./src/global/A_ARC_Context.class");
 Object.defineProperty(exports, "A_ARC_Context", { enumerable: true, get: function () { return A_ARC_Context_class_1.A_ARC_Context; } });
 // ============ Export Global & Service Entities ============
 // ================== API ==================
-exports.A_AUTH_AppInteractions = __importStar(require("./src/api/app-interactions"));
-exports.A_AUTH_ServerCommands = __importStar(require("./src/api/server-commands"));
-exports.A_AUTH_ServerDelegate = __importStar(require("./src/api/server-delegate"));
+exports.A_ARC_AppInteractions = __importStar(require("./src/api/app-interactions"));
+exports.A_ARC_ServerCommands = __importStar(require("./src/api/server-commands"));
+exports.A_ARC_ServerDelegate = __importStar(require("./src/api/server-delegate"));
+// ================== LIB ==================
+var A_ARC_MaskQueryBuilder_class_1 = require("./src/lib/A_ARC_MaskQueryBuilder.class");
+Object.defineProperty(exports, "A_ARC_EntityMaskQueryBuilder", { enumerable: true, get: function () { return A_ARC_MaskQueryBuilder_class_1.A_ARC_EntityMaskQueryBuilder; } });
+Object.defineProperty(exports, "A_ARC_MaskQueryBuilder", { enumerable: true, get: function () { return A_ARC_MaskQueryBuilder_class_1.A_ARC_MaskQueryBuilder; } });
 // ============ CONSTANTS Export ============
 var errors_constants_1 = require("./src/constants/errors.constants");
 Object.defineProperty(exports, "A_ARC_CONSTANTS__DEFAULT_ERRORS", { enumerable: true, get: function () { return errors_constants_1.A_ARC_CONSTANTS__DEFAULT_ERRORS; } });
