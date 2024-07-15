@@ -21,6 +21,9 @@ export {
     A_ARC_CONSTANTS__DEFAULT_ERRORS,
     A_ARC_CONSTANTS__ERROR_CODES
 } from './src/constants/errors.constants';
+export {
+    A_ARC_CONSTANTS__DEFAULT_CRUD_ACTIONS
+} from './src/constants/actions.constants';
 
 
 // ============ TYPES Export ============
