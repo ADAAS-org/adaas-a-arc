@@ -19,7 +19,10 @@ export type A_ARC_SERVER_COMMANDS_TYPES__ResourceListRequest = {
     mask: string
 }
 
-export type A_ARC_SERVER_COMMANDS_TYPES__ResourceListResponse = A_SDK_TYPES__IDefaultPagination<A_ARC_TYPES__Resource_APIEntity>
+/**
+ * returns the FULL list of available resources
+ */
+export type A_ARC_SERVER_COMMANDS_TYPES__ResourceListResponse = Array<string>
 
 
 // =========================  RESOURCE EXISTS REQUEST API TYPES ================================

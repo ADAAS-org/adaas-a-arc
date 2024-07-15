@@ -1,4 +1,4 @@
-import { A_SDK_TYPES__IDefaultPagination, A_SDK_TYPES__ExtractProperties } from "@adaas/a-sdk-types";
+import { A_SDK_TYPES__ExtractProperties } from "@adaas/a-sdk-types";
 import { A_ARC_TYPES__Resource_APIEntity } from "../../app-interactions/index.types";
 export type A_ARC_SERVER_COMMANDS_TYPES__ResourceListRequest = {
     /**
@@ -8,7 +8,10 @@ export type A_ARC_SERVER_COMMANDS_TYPES__ResourceListRequest = {
      */
     mask: string;
 };
-export type A_ARC_SERVER_COMMANDS_TYPES__ResourceListResponse = A_SDK_TYPES__IDefaultPagination<A_ARC_TYPES__Resource_APIEntity>;
+/**
+ * returns the FULL list of available resources
+ */
+export type A_ARC_SERVER_COMMANDS_TYPES__ResourceListResponse = Array<string>;
 export type A_ARC_SERVER_COMMANDS_TYPES__ResourceExistsRequest = {
     /**
      * Resource identifier in ADAAS System
