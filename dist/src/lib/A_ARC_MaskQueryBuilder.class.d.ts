@@ -34,15 +34,15 @@ export declare class A_ARC_EntityMaskQueryBuilder {
     allow: () => A_ARC_MaskQueryBuilder;
     deny: () => A_ARC_MaskQueryBuilder;
     entity: (name: string) => A_ARC_EntityMaskQueryBuilder;
-    scope: (aseid: string) => A_ARC_MaskQueryBuilder;
-    scopes: (aseids: string[]) => A_ARC_MaskQueryBuilder;
+    scope: (aseidOrId: string) => A_ARC_MaskQueryBuilder;
+    scopes: (aseidsOrIds: string[]) => A_ARC_MaskQueryBuilder;
     resource: (aseid: string) => A_ARC_MaskQueryBuilder;
     resources: (aseids: string[]) => A_ARC_MaskQueryBuilder;
     action: (name: string) => A_ARC_MaskQueryBuilder;
     actions: (names: string[]) => A_ARC_MaskQueryBuilder;
+    toString: () => string;
     private createProxy;
     private compile;
-    toString(): void;
 }
 /**
  * This class provides a wrapper on how to create a proper mask for the ACL rule
@@ -52,14 +52,13 @@ export declare class A_ARC_MaskQueryBuilder {
     private namespace;
     private _allow;
     private _deny;
-    private _scopes;
     private _resources;
     private _actions;
     allow(): this;
     deny(): this;
     entity(name: string): A_ARC_EntityMaskQueryBuilder;
-    scope(aseid: string): this;
-    scopes(aseids: string[]): this;
+    scope(aseidOrId: string): this;
+    scopes(aseidsOrIds: string[]): this;
     resource(aseid: string): this;
     resources(aseids: string[]): this;
     action(name: string): this;

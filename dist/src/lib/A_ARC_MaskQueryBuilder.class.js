@@ -17,6 +17,7 @@ class A_ARC_EntityMaskQueryBuilder {
         this.resources = this.createProxy(this.parent).resources;
         this.action = this.createProxy(this.parent).action;
         this.actions = this.createProxy(this.parent).actions;
+        this.toString = this.createProxy(this.parent).toString;
     }
     id(id) {
         if (this._ids.find(e => e === id)) {
@@ -114,8 +115,6 @@ class A_ARC_EntityMaskQueryBuilder {
         }
         return result;
     }
-    toString() {
-    }
 }
 exports.A_ARC_EntityMaskQueryBuilder = A_ARC_EntityMaskQueryBuilder;
 /**
@@ -127,7 +126,6 @@ class A_ARC_MaskQueryBuilder {
         this.namespace = a_sdk_types_1.A_SDK_Context.namespace;
         this._allow = true;
         this._deny = false;
-        this._scopes = [];
         this._resources = [];
         this._actions = [];
     }
@@ -144,18 +142,29 @@ class A_ARC_MaskQueryBuilder {
     entity(name) {
         return new A_ARC_EntityMaskQueryBuilder(this, name);
     }
-    scope(aseid) {
-        if (this._scopes.find(e => e === aseid)) {
+    scope(aseidOrId) {
+        const scopeId = a_sdk_types_1.A_SDK_CommonHelper.isASEID(aseidOrId)
+            ? a_sdk_types_1.A_SDK_CommonHelper.parseASEID(aseidOrId).id
+            : aseidOrId;
+        const targetResourceMask = `${scopeId}:*:*@*`;
+        if (this._resources.find(e => e === targetResourceMask)) {
             return this;
         }
         else {
-            this._scopes.push(aseid);
+            this._resources.push(targetResourceMask);
             return this;
         }
     }
-    scopes(aseids) {
-        const shouldBeAdded = aseids.filter(el => !this._scopes.find(e => e === el));
-        this._scopes.push(...shouldBeAdded);
+    scopes(aseidsOrIds) {
+        aseidsOrIds.forEach(aseidOrId => {
+            const scopeId = a_sdk_types_1.A_SDK_CommonHelper.isASEID(aseidOrId)
+                ? a_sdk_types_1.A_SDK_CommonHelper.parseASEID(aseidOrId).id
+                : aseidOrId;
+            const targetResourceMask = `${scopeId}:*:*@*`;
+            if (!this._resources.find(e => e === targetResourceMask)) {
+                this._resources.push(targetResourceMask);
+            }
+        });
         return this;
     }
     resource(aseid) {
@@ -187,15 +196,11 @@ class A_ARC_MaskQueryBuilder {
         return this;
     }
     toString() {
-        return `${this.namespace}@${this._scopes.length
-            ? this._scopes.length > 1
-                ? `(${this._scopes.join('|')})`
-                : this._scopes[0]
-            : '*'}:${this._resources.length
+        return `${this.namespace}@${this._resources.length
             ? this._resources.length > 1
                 ? `(${this._resources.join('|')})`
                 : this._resources[0]
-            : '*'}/${this._allow
+            : '*:*@*'}/${this._allow
             ? 'Allow'
             : this._deny
                 ? 'Deny'

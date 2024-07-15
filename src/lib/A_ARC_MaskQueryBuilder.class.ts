@@ -1,4 +1,4 @@
-import { A_SDK_Context } from "@adaas/a-sdk-types";
+import { A_SDK_CommonHelper, A_SDK_Context } from "@adaas/a-sdk-types";
 
 
 export class A_ARC_EntityMaskQueryBuilder {
@@ -82,6 +82,7 @@ export class A_ARC_EntityMaskQueryBuilder {
     resources = this.createProxy(this.parent).resources;
     action = this.createProxy(this.parent).action;
     actions = this.createProxy(this.parent).actions;
+    toString = this.createProxy(this.parent).toString;
 
 
     private createProxy(target: A_ARC_MaskQueryBuilder): A_ARC_MaskQueryBuilder {
@@ -135,10 +136,6 @@ export class A_ARC_EntityMaskQueryBuilder {
         return result;
     }
 
-
-    toString() {
-
-    }
 }
 
 
@@ -153,7 +150,6 @@ export class A_ARC_MaskQueryBuilder {
 
     private _allow: boolean = true;
     private _deny: boolean = false;
-    private _scopes: Array<string> = [];
     private _resources: Array<string> = [];
     private _actions: Array<string> = [];
 
@@ -179,22 +175,37 @@ export class A_ARC_MaskQueryBuilder {
     }
 
 
-    scope(aseid: string): this {
-        if (this._scopes.find(e => e === aseid)) {
+    scope(aseidOrId: string): this {
+        const scopeId = A_SDK_CommonHelper.isASEID(aseidOrId)
+            ? A_SDK_CommonHelper.parseASEID(aseidOrId).id
+            : aseidOrId;
+
+        const targetResourceMask = `${scopeId}:*:*@*`;
+
+        if (this._resources.find(e => e === targetResourceMask)) {
             return this;
         }
         else {
-            this._scopes.push(aseid);
+            this._resources.push(targetResourceMask);
             return this;
         }
     }
 
-    scopes(aseids: string[]): this {
-        const shouldBeAdded = aseids.filter(el => !this._scopes.find(e => e === el));
+    scopes(aseidsOrIds: string[]): this {
 
-        this._scopes.push(...shouldBeAdded);
+        aseidsOrIds.forEach(aseidOrId => {
+            const scopeId = A_SDK_CommonHelper.isASEID(aseidOrId)
+                ? A_SDK_CommonHelper.parseASEID(aseidOrId).id
+                : aseidOrId;
+
+            const targetResourceMask = `${scopeId}:*:*@*`;
+
+            if (!this._resources.find(e => e === targetResourceMask)) {
+                this._resources.push(targetResourceMask);
+            }
+        });
+
         return this;
-
     }
 
 
@@ -237,16 +248,11 @@ export class A_ARC_MaskQueryBuilder {
 
     toString() {
         return `${this.namespace
-            }@${this._scopes.length
-                ? this._scopes.length > 1
-                    ? `(${this._scopes.join('|')})`
-                    : this._scopes[0]
-                : '*'
-            }:${this._resources.length
+            }@${this._resources.length
                 ? this._resources.length > 1
                     ? `(${this._resources.join('|')})`
                     : this._resources[0]
-                : '*'
+                : '*:*@*'
             }/${this._allow
                 ? 'Allow'
                 : this._deny
