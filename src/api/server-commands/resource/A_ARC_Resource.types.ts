@@ -11,8 +11,12 @@ import { A_ARC_TYPES__Resource_APIEntity } from "../../app-interactions/index.ty
 
 // =========================  RESOURCE LIST REQUEST API TYPES ================================
 export type A_ARC_SERVER_COMMANDS_TYPES__ResourceListRequest = {
-    pagination: A_SDK_TYPES__IRequestPagination,
-    filter: A_SDK_TYPES__IRequestFilter
+    /**
+     * The access verification mask to compare with ACL rules in ARC
+     * 
+     * e.g. NAMESPACE@SCOPE_ID:ENTITY_NAME:ENTITY_ID@VERSION\/AFFECT:OPERATION
+     */
+    mask: string
 }
 
 export type A_ARC_SERVER_COMMANDS_TYPES__ResourceListResponse = A_SDK_TYPES__IDefaultPagination<A_ARC_TYPES__Resource_APIEntity>
