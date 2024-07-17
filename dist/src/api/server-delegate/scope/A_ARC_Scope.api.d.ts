@@ -1,6 +1,7 @@
-import { A_AUTH_ServerCommands_APIProvider } from "@adaas/a-auth";
+import { A_AUTH_ServerCommands_APIProvider, A_AUTH_ServerDelegateAuthenticator, A_AUTH_TYPES__APIProviderRequestConfig } from "@adaas/a-auth";
 import { A_ARC_ContextClass } from "../../../global/A_ARC_Context.class";
 import { A_ARC_SERVER_DELEGATE_TYPES__ScopeCreateRequest, A_ARC_SERVER_DELEGATE_TYPES__ScopeDeleteRequest, A_ARC_SERVER_DELEGATE_TYPES__ScopeDeleteResponse, A_ARC_SERVER_DELEGATE_TYPES__ScopeExistsRequest, A_ARC_SERVER_DELEGATE_TYPES__ScopeExistsResponse, A_ARC_SERVER_DELEGATE_TYPES__ScopeListRequest, A_ARC_SERVER_DELEGATE_TYPES__ScopeListResponse } from "./A_ARC_Scope.types";
+import { A_SDK_TYPES__Required } from "@adaas/a-sdk-types";
 export declare class A_ARC_SERVER_DELEGATE__ScopeAPI extends A_AUTH_ServerCommands_APIProvider<A_ARC_ContextClass> {
     protected baseURL: string;
     /**
@@ -10,11 +11,7 @@ export declare class A_ARC_SERVER_DELEGATE__ScopeAPI extends A_AUTH_ServerComman
      * @param meta
      * @returns
      */
-    list<M = any>(request: A_ARC_SERVER_DELEGATE_TYPES__ScopeListRequest, 
-    /**
-     * The meta object to pass through API call for error handling or response handling
-     */
-    meta?: M): Promise<A_ARC_SERVER_DELEGATE_TYPES__ScopeListResponse>;
+    list<M = any>(request: A_ARC_SERVER_DELEGATE_TYPES__ScopeListRequest, config: A_SDK_TYPES__Required<A_AUTH_TYPES__APIProviderRequestConfig<M, A_AUTH_ServerDelegateAuthenticator>, ['authenticator']>): Promise<A_ARC_SERVER_DELEGATE_TYPES__ScopeListResponse>;
     /**
      * Checks the scope existence in ARC
      *
@@ -22,11 +19,7 @@ export declare class A_ARC_SERVER_DELEGATE__ScopeAPI extends A_AUTH_ServerComman
      * @param meta
      * @returns
      */
-    exists<M = any>(request: A_ARC_SERVER_DELEGATE_TYPES__ScopeExistsRequest, 
-    /**
-     * The meta object to pass through API call for error handling or response handling
-     */
-    meta?: M): Promise<A_ARC_SERVER_DELEGATE_TYPES__ScopeExistsResponse>;
+    exists<M = any>(request: A_ARC_SERVER_DELEGATE_TYPES__ScopeExistsRequest, config: A_SDK_TYPES__Required<A_AUTH_TYPES__APIProviderRequestConfig<M, A_AUTH_ServerDelegateAuthenticator>, ['authenticator']>): Promise<A_ARC_SERVER_DELEGATE_TYPES__ScopeExistsResponse>;
     /**
      * API to create a new scope
      *
@@ -34,11 +27,7 @@ export declare class A_ARC_SERVER_DELEGATE__ScopeAPI extends A_AUTH_ServerComman
      * @param meta
      * @returns
      */
-    create<M = any>(request: A_ARC_SERVER_DELEGATE_TYPES__ScopeCreateRequest, 
-    /**
-     * The meta object to pass through API call for error handling or response handling
-     */
-    meta?: M): Promise<import("../../app-interactions/index.types").A_ARC_TYPES__Scope_APIEntity>;
+    create<M = any>(request: A_ARC_SERVER_DELEGATE_TYPES__ScopeCreateRequest, config: A_SDK_TYPES__Required<A_AUTH_TYPES__APIProviderRequestConfig<M, A_AUTH_ServerDelegateAuthenticator>, ['authenticator']>): Promise<import("../../app-interactions/index.types").A_ARC_TYPES__Scope_APIEntity>;
     /**
      * The method to remove scope by its aseid
      *
@@ -46,9 +35,5 @@ export declare class A_ARC_SERVER_DELEGATE__ScopeAPI extends A_AUTH_ServerComman
      * @param meta
      * @returns
      */
-    remove<M = any>(request: A_ARC_SERVER_DELEGATE_TYPES__ScopeDeleteRequest, 
-    /**
-     * The meta object to pass through API call for error handling or response handling
-     */
-    meta?: M): Promise<A_ARC_SERVER_DELEGATE_TYPES__ScopeDeleteResponse>;
+    remove<M = any>(request: A_ARC_SERVER_DELEGATE_TYPES__ScopeDeleteRequest, config: A_SDK_TYPES__Required<A_AUTH_TYPES__APIProviderRequestConfig<M, A_AUTH_ServerDelegateAuthenticator>, ['authenticator']>): Promise<A_ARC_SERVER_DELEGATE_TYPES__ScopeDeleteResponse>;
 }

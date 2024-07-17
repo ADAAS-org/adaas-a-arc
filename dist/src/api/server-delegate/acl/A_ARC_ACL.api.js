@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.A_ARC_SERVER_DELEGATE__ACLAPI = void 0;
 const a_auth_1 = require("@adaas/a-auth");
-class A_ARC_SERVER_DELEGATE__ACLAPI extends a_auth_1.A_AUTH_ServerCommands_APIProvider {
+class A_ARC_SERVER_DELEGATE__ACLAPI extends a_auth_1.A_AUTH_ServerDelegate_APIProvider {
     constructor() {
         super(...arguments);
         this.baseURL = this.context.getConfigurationProperty('API_LOCATION');
@@ -23,16 +23,10 @@ class A_ARC_SERVER_DELEGATE__ACLAPI extends a_auth_1.A_AUTH_ServerCommands_APIPr
      * @param meta
      * @returns
      */
-    verify(request, 
-    /**
-     * The meta object to pass through API call for error handling or response handling
-     */
-    meta) {
+    verify(request, config) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this
-                .get('/-s-dlg-/acl/verify', request, {
-                meta
-            });
+                .post('/-s-dlg-/acl/verify', request, config);
         });
     }
     /**
@@ -42,16 +36,10 @@ class A_ARC_SERVER_DELEGATE__ACLAPI extends a_auth_1.A_AUTH_ServerCommands_APIPr
      * @param meta
      * @returns
      */
-    remove(request, 
-    /**
-     * The meta object to pass through API call for error handling or response handling
-     */
-    meta) {
+    remove(request, config) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this
-                .post(`/-s-dlg-/acls/remove`, request, {
-                meta
-            });
+                .post(`/-s-dlg-/acls/remove`, request, config);
         });
     }
 }

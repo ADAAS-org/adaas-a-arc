@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.A_ARC_SERVER_DELEGATE__ResourceAPI = void 0;
 const a_auth_1 = require("@adaas/a-auth");
-class A_ARC_SERVER_DELEGATE__ResourceAPI extends a_auth_1.A_AUTH_ServerCommands_APIProvider {
+class A_ARC_SERVER_DELEGATE__ResourceAPI extends a_auth_1.A_AUTH_ServerDelegate_APIProvider {
     constructor() {
         super(...arguments);
         this.baseURL = this.context.getConfigurationProperty('API_LOCATION');
@@ -23,16 +23,10 @@ class A_ARC_SERVER_DELEGATE__ResourceAPI extends a_auth_1.A_AUTH_ServerCommands_
      * @param meta
      * @returns
      */
-    list(request, 
-    /**
-     * The meta object to pass through API call for error handling or response handling
-     */
-    meta) {
+    list(request, config) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this
-                .get('/-s-dlg-/resources', request, {
-                meta
-            });
+                .get('/-s-dlg-/resources', request, config);
         });
     }
     /**
@@ -42,16 +36,10 @@ class A_ARC_SERVER_DELEGATE__ResourceAPI extends a_auth_1.A_AUTH_ServerCommands_
      * @param meta
      * @returns
      */
-    exists(request, 
-    /**
-     * The meta object to pass through API call for error handling or response handling
-     */
-    meta) {
+    exists(request, config) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this
-                .get('/-s-dlg-/resources', request, {
-                meta
-            });
+                .get('/-s-dlg-/resources', request, config);
         });
     }
     /**
@@ -61,16 +49,10 @@ class A_ARC_SERVER_DELEGATE__ResourceAPI extends a_auth_1.A_AUTH_ServerCommands_
      * @param meta
      * @returns
      */
-    create(request, 
-    /**
-     * The meta object to pass through API call for error handling or response handling
-     */
-    meta) {
+    create(request, config) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this
-                .post('/-s-dlg-/resources', request, {
-                meta
-            });
+                .post('/-s-dlg-/resources', request, config);
         });
     }
     /**
@@ -80,16 +62,10 @@ class A_ARC_SERVER_DELEGATE__ResourceAPI extends a_auth_1.A_AUTH_ServerCommands_
      * @param meta
      * @returns
      */
-    remove(request, 
-    /**
-     * The meta object to pass through API call for error handling or response handling
-     */
-    meta) {
+    remove(request, config) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this
-                .delete(`/-s-dlg-/resources/${request.aseid}`, {
-                meta
-            });
+                .delete(`/-s-dlg-/resources/${request.aseid}`, config);
         });
     }
 }

@@ -1,4 +1,4 @@
-import { A_AUTH_ServerCommands_APIProvider } from "@adaas/a-auth";
+import { A_AUTH_ServerCommands_APIProvider, A_AUTH_TYPES__APIProviderRequestConfig } from "@adaas/a-auth";
 import { A_ARC_ContextClass } from "@adaas/a-sdk/global/A_ARC_Context.class";
 import {
     A_ARC_SERVER_COMMANDS_TYPES__ScopeCreateRequest,
@@ -26,18 +26,13 @@ export class A_ARC_SERVER_COMMANDS__ScopeAPI extends A_AUTH_ServerCommands_APIPr
      */
     async list<M = any>(
         request: A_ARC_SERVER_COMMANDS_TYPES__ScopeListRequest,
-        /**
-         * The meta object to pass through API call for error handling or response handling
-         */
-        meta?: M
+        config?: A_AUTH_TYPES__APIProviderRequestConfig<M>
     ) {
         return await this
             .get<A_ARC_SERVER_COMMANDS_TYPES__ScopeListResponse, M>(
                 '/-s-cmd-/scopes',
                 request,
-                {
-                    meta
-                }
+                config
             );
     }
 
@@ -51,18 +46,13 @@ export class A_ARC_SERVER_COMMANDS__ScopeAPI extends A_AUTH_ServerCommands_APIPr
      */
     async exists<M = any>(
         request: A_ARC_SERVER_COMMANDS_TYPES__ScopeExistsRequest,
-        /**
-         * The meta object to pass through API call for error handling or response handling
-         */
-        meta?: M
+        config?: A_AUTH_TYPES__APIProviderRequestConfig<M>
     ) {
         return await this
             .get<A_ARC_SERVER_COMMANDS_TYPES__ScopeExistsResponse, M>(
                 '/-s-cmd-/scopes',
                 request,
-                {
-                    meta
-                }
+                config
             );
     }
 
@@ -76,18 +66,13 @@ export class A_ARC_SERVER_COMMANDS__ScopeAPI extends A_AUTH_ServerCommands_APIPr
      */
     async create<M = any>(
         request: A_ARC_SERVER_COMMANDS_TYPES__ScopeCreateRequest,
-        /**
-         * The meta object to pass through API call for error handling or response handling
-         */
-        meta?: M
+        config?: A_AUTH_TYPES__APIProviderRequestConfig<M>
     ) {
         return await this
             .post<A_ARC_SERVER_COMMANDS_TYPES__ScopeCreateResponse, M>(
                 '/-s-cmd-/scopes',
                 request,
-                {
-                    meta
-                }
+                config
             );
     }
 
@@ -101,17 +86,12 @@ export class A_ARC_SERVER_COMMANDS__ScopeAPI extends A_AUTH_ServerCommands_APIPr
      */
     async remove<M = any>(
         request: A_ARC_SERVER_COMMANDS_TYPES__ScopeDeleteRequest,
-        /**
-         * The meta object to pass through API call for error handling or response handling
-         */
-        meta?: M
+        config?: A_AUTH_TYPES__APIProviderRequestConfig<M>
     ) {
         return await this
             .delete<A_ARC_SERVER_COMMANDS_TYPES__ScopeDeleteResponse, M>(
                 `/-s-cmd-/scopes/${request.aseid}`,
-                {
-                    meta
-                }
+                config
             );
     }
 }

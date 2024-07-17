@@ -1,4 +1,4 @@
-import { A_AUTH_ServerCommands_APIProvider } from "@adaas/a-auth";
+import { A_AUTH_ServerCommands_APIProvider, A_AUTH_ServerDelegate_APIProvider, A_AUTH_ServerDelegateAuthenticator, A_AUTH_TYPES__APIProviderRequestConfig } from "@adaas/a-auth";
 import { A_ARC_ContextClass } from "@adaas/a-sdk/global/A_ARC_Context.class";
 import {
     A_ARC_SERVER_DELEGATE_TYPES__ResourceCreateRequest,
@@ -10,10 +10,11 @@ import {
     A_ARC_SERVER_DELEGATE_TYPES__ResourceListRequest,
     A_ARC_SERVER_DELEGATE_TYPES__ResourceListResponse,
 } from "./A_ARC_Resource.types";
+import { A_SDK_TYPES__Required } from "@adaas/a-sdk-types";
 
 
 
-export class A_ARC_SERVER_DELEGATE__ResourceAPI extends A_AUTH_ServerCommands_APIProvider<A_ARC_ContextClass> {
+export class A_ARC_SERVER_DELEGATE__ResourceAPI extends A_AUTH_ServerDelegate_APIProvider<A_ARC_ContextClass> {
 
     protected baseURL: string = this.context.getConfigurationProperty<string>('API_LOCATION');
 
@@ -26,18 +27,13 @@ export class A_ARC_SERVER_DELEGATE__ResourceAPI extends A_AUTH_ServerCommands_AP
      */
     async list<M = any>(
         request: A_ARC_SERVER_DELEGATE_TYPES__ResourceListRequest,
-        /**
-         * The meta object to pass through API call for error handling or response handling
-         */
-        meta?: M
+        config: A_SDK_TYPES__Required<A_AUTH_TYPES__APIProviderRequestConfig<M, A_AUTH_ServerDelegateAuthenticator>, ['authenticator']>
     ) {
         return await this
             .get<A_ARC_SERVER_DELEGATE_TYPES__ResourceListResponse, M>(
                 '/-s-dlg-/resources',
                 request,
-                {
-                    meta
-                }
+                config
             );
     }
 
@@ -51,18 +47,13 @@ export class A_ARC_SERVER_DELEGATE__ResourceAPI extends A_AUTH_ServerCommands_AP
      */
     async exists<M = any>(
         request: A_ARC_SERVER_DELEGATE_TYPES__ResourceExistsRequest,
-        /**
-         * The meta object to pass through API call for error handling or response handling
-         */
-        meta?: M
+        config: A_SDK_TYPES__Required<A_AUTH_TYPES__APIProviderRequestConfig<M, A_AUTH_ServerDelegateAuthenticator>, ['authenticator']>
     ) {
         return await this
             .get<A_ARC_SERVER_DELEGATE_TYPES__ResourceExistsResponse, M>(
                 '/-s-dlg-/resources',
                 request,
-                {
-                    meta
-                }
+                config
             );
     }
 
@@ -76,18 +67,13 @@ export class A_ARC_SERVER_DELEGATE__ResourceAPI extends A_AUTH_ServerCommands_AP
      */
     async create<M = any>(
         request: A_ARC_SERVER_DELEGATE_TYPES__ResourceCreateRequest,
-        /**
-         * The meta object to pass through API call for error handling or response handling
-         */
-        meta?: M
+        config: A_SDK_TYPES__Required<A_AUTH_TYPES__APIProviderRequestConfig<M, A_AUTH_ServerDelegateAuthenticator>, ['authenticator']>
     ) {
         return await this
             .post<A_ARC_SERVER_DELEGATE_TYPES__ResourceCreateResponse, M>(
                 '/-s-dlg-/resources',
                 request,
-                {
-                    meta
-                }
+                config
             );
     }
 
@@ -101,17 +87,12 @@ export class A_ARC_SERVER_DELEGATE__ResourceAPI extends A_AUTH_ServerCommands_AP
      */
     async remove<M = any>(
         request: A_ARC_SERVER_DELEGATE_TYPES__ResourceDeleteRequest,
-        /**
-         * The meta object to pass through API call for error handling or response handling
-         */
-        meta?: M
+        config: A_SDK_TYPES__Required<A_AUTH_TYPES__APIProviderRequestConfig<M, A_AUTH_ServerDelegateAuthenticator>, ['authenticator']>
     ) {
         return await this
             .delete<A_ARC_SERVER_DELEGATE_TYPES__ResourceDeleteResponse, M>(
                 `/-s-dlg-/resources/${request.aseid}`,
-                {
-                    meta
-                }
+                config
             );
     }
 }

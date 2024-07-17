@@ -23,16 +23,10 @@ class A_ARC_SERVER_COMMANDS__ACLAPI extends a_auth_1.A_AUTH_ServerCommands_APIPr
      * @param meta
      * @returns
      */
-    verify(request, 
-    /**
-     * The meta object to pass through API call for error handling or response handling
-     */
-    meta) {
+    verify(request, config) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this
-                .get('/-s-cmd-/acl/verify', request, {
-                meta
-            });
+                .post('/-s-cmd-/acl/verify', request, config);
         });
     }
     /**
@@ -42,16 +36,10 @@ class A_ARC_SERVER_COMMANDS__ACLAPI extends a_auth_1.A_AUTH_ServerCommands_APIPr
      * @param meta
      * @returns
      */
-    remove(request, 
-    /**
-     * The meta object to pass through API call for error handling or response handling
-     */
-    meta) {
+    remove(request, config) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this
-                .post(`/-s-cmd-/acls/remove`, request, {
-                meta
-            });
+                .post(`/-s-cmd-/acls/remove`, request, config);
         });
     }
 }

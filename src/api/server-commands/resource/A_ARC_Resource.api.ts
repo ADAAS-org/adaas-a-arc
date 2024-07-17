@@ -1,4 +1,4 @@
-import { A_AUTH_ServerCommands_APIProvider } from "@adaas/a-auth";
+import { A_AUTH_ServerCommands_APIProvider, A_AUTH_TYPES__APIProviderRequestConfig } from "@adaas/a-auth";
 import { A_ARC_ContextClass } from "@adaas/a-sdk/global/A_ARC_Context.class";
 import {
     A_ARC_SERVER_COMMANDS_TYPES__ResourceCreateRequest,
@@ -26,18 +26,13 @@ export class A_ARC_SERVER_COMMANDS__ResourceAPI extends A_AUTH_ServerCommands_AP
      */
     async list<M = any>(
         request: A_ARC_SERVER_COMMANDS_TYPES__ResourceListRequest,
-        /**
-         * The meta object to pass through API call for error handling or response handling
-         */
-        meta?: M
+        config?:A_AUTH_TYPES__APIProviderRequestConfig<M>
     ) {
         return await this
             .get<A_ARC_SERVER_COMMANDS_TYPES__ResourceListResponse, M>(
                 '/-s-cmd-/resources',
                 request,
-                {
-                    meta
-                }
+                config
             );
     }
 
@@ -51,18 +46,13 @@ export class A_ARC_SERVER_COMMANDS__ResourceAPI extends A_AUTH_ServerCommands_AP
      */
     async exists<M = any>(
         request: A_ARC_SERVER_COMMANDS_TYPES__ResourceExistsRequest,
-        /**
-         * The meta object to pass through API call for error handling or response handling
-         */
-        meta?: M
+        config?:A_AUTH_TYPES__APIProviderRequestConfig<M>
     ) {
         return await this
             .get<A_ARC_SERVER_COMMANDS_TYPES__ResourceExistsResponse, M>(
                 '/-s-cmd-/resources',
                 request,
-                {
-                    meta
-                }
+                config
             );
     }
 
@@ -76,18 +66,13 @@ export class A_ARC_SERVER_COMMANDS__ResourceAPI extends A_AUTH_ServerCommands_AP
      */
     async create<M = any>(
         request: A_ARC_SERVER_COMMANDS_TYPES__ResourceCreateRequest,
-        /**
-         * The meta object to pass through API call for error handling or response handling
-         */
-        meta?: M
+        config?:A_AUTH_TYPES__APIProviderRequestConfig<M>
     ) {
         return await this
             .post<A_ARC_SERVER_COMMANDS_TYPES__ResourceCreateResponse, M>(
                 '/-s-cmd-/resources',
                 request,
-                {
-                    meta
-                }
+                config
             );
     }
 
@@ -101,17 +86,12 @@ export class A_ARC_SERVER_COMMANDS__ResourceAPI extends A_AUTH_ServerCommands_AP
      */
     async remove<M = any>(
         request: A_ARC_SERVER_COMMANDS_TYPES__ResourceDeleteRequest,
-        /**
-         * The meta object to pass through API call for error handling or response handling
-         */
-        meta?: M
+        config?:A_AUTH_TYPES__APIProviderRequestConfig<M>
     ) {
         return await this
             .delete<A_ARC_SERVER_COMMANDS_TYPES__ResourceDeleteResponse, M>(
                 `/-s-cmd-/resources/${request.aseid}`,
-                {
-                    meta
-                }
+                config
             );
     }
 }

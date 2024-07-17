@@ -1,4 +1,4 @@
-import { A_AUTH_ServerCommands_APIProvider } from "@adaas/a-auth";
+import { A_AUTH_ServerCommands_APIProvider, A_AUTH_TYPES__APIProviderRequestConfig } from "@adaas/a-auth";
 import { A_ARC_ContextClass } from "@adaas/a-sdk/global/A_ARC_Context.class";
 import {
     A_ARC_SERVER_COMMANDS_TYPES__ACLRemoveRequest,
@@ -22,18 +22,13 @@ export class A_ARC_SERVER_COMMANDS__ACLAPI extends A_AUTH_ServerCommands_APIProv
      */
     async verify<M = any>(
         request: A_ARC_SERVER_COMMANDS_TYPES__ACLVerifyRequest,
-        /**
-         * The meta object to pass through API call for error handling or response handling
-         */
-        meta?: M
+        config?:A_AUTH_TYPES__APIProviderRequestConfig<M>
     ) {
         return await this
-            .get<A_ARC_SERVER_COMMANDS_TYPES__ACLVerifyResponse, M>(
+            .post<A_ARC_SERVER_COMMANDS_TYPES__ACLVerifyResponse, M>(
                 '/-s-cmd-/acl/verify',
                 request,
-                {
-                    meta
-                }
+                config
             );
     }
 
@@ -48,18 +43,13 @@ export class A_ARC_SERVER_COMMANDS__ACLAPI extends A_AUTH_ServerCommands_APIProv
      */
     async remove<M = any>(
         request: A_ARC_SERVER_COMMANDS_TYPES__ACLRemoveRequest,
-        /**
-         * The meta object to pass through API call for error handling or response handling
-         */
-        meta?: M
+        config?:A_AUTH_TYPES__APIProviderRequestConfig<M>
     ) {
         return await this
             .post<A_ARC_SERVER_COMMANDS_TYPES__ACLRemoveResponse, M>(
                 `/-s-cmd-/acls/remove`,
                 request,
-                {
-                    meta
-                }
+                config
             );
     }
 }

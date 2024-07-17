@@ -23,16 +23,10 @@ class A_ARC_SERVER_COMMANDS__ScopeAPI extends a_auth_1.A_AUTH_ServerCommands_API
      * @param meta
      * @returns
      */
-    list(request, 
-    /**
-     * The meta object to pass through API call for error handling or response handling
-     */
-    meta) {
+    list(request, config) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this
-                .get('/-s-cmd-/scopes', request, {
-                meta
-            });
+                .get('/-s-cmd-/scopes', request, config);
         });
     }
     /**
@@ -42,16 +36,10 @@ class A_ARC_SERVER_COMMANDS__ScopeAPI extends a_auth_1.A_AUTH_ServerCommands_API
      * @param meta
      * @returns
      */
-    exists(request, 
-    /**
-     * The meta object to pass through API call for error handling or response handling
-     */
-    meta) {
+    exists(request, config) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this
-                .get('/-s-cmd-/scopes', request, {
-                meta
-            });
+                .get('/-s-cmd-/scopes', request, config);
         });
     }
     /**
@@ -61,16 +49,10 @@ class A_ARC_SERVER_COMMANDS__ScopeAPI extends a_auth_1.A_AUTH_ServerCommands_API
      * @param meta
      * @returns
      */
-    create(request, 
-    /**
-     * The meta object to pass through API call for error handling or response handling
-     */
-    meta) {
+    create(request, config) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this
-                .post('/-s-cmd-/scopes', request, {
-                meta
-            });
+                .post('/-s-cmd-/scopes', request, config);
         });
     }
     /**
@@ -80,16 +62,10 @@ class A_ARC_SERVER_COMMANDS__ScopeAPI extends a_auth_1.A_AUTH_ServerCommands_API
      * @param meta
      * @returns
      */
-    remove(request, 
-    /**
-     * The meta object to pass through API call for error handling or response handling
-     */
-    meta) {
+    remove(request, config) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this
-                .delete(`/-s-cmd-/scopes/${request.aseid}`, {
-                meta
-            });
+                .delete(`/-s-cmd-/scopes/${request.aseid}`, config);
         });
     }
 }
