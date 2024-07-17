@@ -49,7 +49,7 @@
   "homepage": "https://github.com/ADAAS-org/adaas-a-arc#readme",
   "dependencies": {
     "@adaas/a-auth": "^0.0.24",
-    "@adaas/a-sdk-types": "^0.0.35",
+    "@adaas/a-sdk-types": "^0.0.36",
     "@types/node": "^20.10.0",
     "axios": "^1.6.2"
   },
