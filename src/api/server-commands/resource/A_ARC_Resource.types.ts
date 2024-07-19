@@ -16,7 +16,12 @@ export type A_ARC_SERVER_COMMANDS_TYPES__ResourceListRequest = {
      * 
      * e.g. NAMESPACE@SCOPE_ID:ENTITY_NAME:ENTITY_ID@VERSION\/AFFECT:OPERATION
      */
-    mask: string
+    mask: string,
+
+    /**
+     * Roles ASEIDs for additional filtering
+     */
+    roles?: Array<string>
 }
 
 /**
