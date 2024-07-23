@@ -48,8 +48,8 @@
   },
   "homepage": "https://github.com/ADAAS-org/adaas-a-arc#readme",
   "dependencies": {
-    "@adaas/a-auth": "^0.0.34",
-    "@adaas/a-sdk-types": "^0.0.37",
+    "@adaas/a-auth": "^0.0.37",
+    "@adaas/a-sdk-types": "^0.0.38",
     "@types/node": "^20.10.0",
     "axios": "^1.6.2"
   },

@@ -1,4 +1,4 @@
-import { A_SDK_TYPES__ExtractProperties } from "@adaas/a-sdk-types"
+import { A_SDK_TYPES__Dictionary, A_SDK_TYPES__ExtractProperties } from "@adaas/a-sdk-types"
 import { A_ARC_TYPES__ACL_APIEntity } from "../../app-interactions/index.types"
 
 // =========================  ACCESS Verify REQUEST API TYPES ================================
@@ -9,14 +9,18 @@ export type A_ARC_SERVER_COMMANDS_TYPES__ACLVerifyRequest = {
      * 
      * e.g. NAMESPACE@SCOPE_ID:ENTITY_NAME:ENTITY_ID@VERSION\/AFFECT:OPERATION
      */
-    mask: string
+    mask: string,
+} | {
+
+    /**
+     *  An object that contains the values of the mask to be used in the verification process
+     */
+    masks: A_SDK_TYPES__Dictionary<string>,
 }
 
 export type A_ARC_SERVER_COMMANDS_TYPES__ACLVerifyResponse = {
-    status: 'OK' | 'ERROR',
-}
-
-
+    valid: boolean,
+} | A_SDK_TYPES__Dictionary<boolean>
 
 
 

@@ -1,6 +1,7 @@
 import {
     A_SDK_TYPES__IDefaultPagination,
     A_SDK_TYPES__ExtractProperties,
+    A_SDK_TYPES__Dictionary,
 } from "@adaas/a-sdk-types"
 import { A_ARC_TYPES__Resource_APIEntity } from "../../app-interactions/index.types"
 
@@ -13,12 +14,18 @@ export type A_ARC_SERVER_DELEGATE_TYPES__ResourceListRequest = {
      * e.g. NAMESPACE@SCOPE_ID:ENTITY_NAME:ENTITY_ID@VERSION\/AFFECT:OPERATION
      */
     mask: string
+} | {
+
+    /**
+     *  An object that contains the values of the mask to be used in the verification process
+     */
+    masks: A_SDK_TYPES__Dictionary<string>,
 }
 
 /**
  * returns the FULL list of available resources
  */
-export type A_ARC_SERVER_DELEGATE_TYPES__ResourceListResponse = Array<string>
+export type A_ARC_SERVER_DELEGATE_TYPES__ResourceListResponse = Array<string> | A_SDK_TYPES__Dictionary<Array<string>>
 
 
 // =========================  RESOURCE EXISTS REQUEST API TYPES ================================

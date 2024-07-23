@@ -1,4 +1,4 @@
-import { A_SDK_TYPES__ExtractProperties } from "@adaas/a-sdk-types";
+import { A_SDK_TYPES__ExtractProperties, A_SDK_TYPES__Dictionary } from "@adaas/a-sdk-types";
 import { A_ARC_TYPES__Resource_APIEntity } from "../../app-interactions/index.types";
 export type A_ARC_SERVER_COMMANDS_TYPES__ResourceListRequest = {
     /**
@@ -11,11 +11,20 @@ export type A_ARC_SERVER_COMMANDS_TYPES__ResourceListRequest = {
      * Roles ASEIDs for additional filtering
      */
     roles?: Array<string>;
+} | {
+    /**
+     *  An object that contains the values of the mask to be used in the verification process
+     */
+    masks: A_SDK_TYPES__Dictionary<string>;
+    /**
+     * Roles ASEIDs for additional filtering
+     */
+    roles?: Array<string>;
 };
 /**
  * returns the FULL list of available resources
  */
-export type A_ARC_SERVER_COMMANDS_TYPES__ResourceListResponse = Array<string>;
+export type A_ARC_SERVER_COMMANDS_TYPES__ResourceListResponse = Array<string> | A_SDK_TYPES__Dictionary<Array<string>>;
 export type A_ARC_SERVER_COMMANDS_TYPES__ResourceExistsRequest = {
     /**
      * Resource identifier in ADAAS System
