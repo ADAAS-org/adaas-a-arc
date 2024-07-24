@@ -1,11 +1,40 @@
 export declare class A_ARC_EntityMaskQueryBuilder {
     private parent;
-    private name;
     private _proxyParent;
+    private _scopes;
+    private _entities;
     private _ids;
     private _versions;
-    constructor(parent: A_ARC_MaskQueryBuilder, name: string);
-    id(id: string): Omit<this, 'ids'>;
+    constructor(parent: A_ARC_MaskQueryBuilder);
+    /**
+     * Allows to define a scope for the mask
+     *
+     * @param idOrASEID
+     * @returns
+     */
+    scope(idOrASEID: string): Omit<this, 'scopes' | 'scope'>;
+    /**
+     * Allows to define multiple scopes for the mask
+     *
+     * @param idsOrASEIDs
+     * @returns
+     */
+    scopes(idsOrASEIDs: string[]): Omit<this, 'scopes' | 'scope'>;
+    /**
+     * Allows to define a single entity for the mask
+     *
+     * @param name
+     * @returns
+     */
+    entity(name: string): Omit<this, 'entities' | 'entity'>;
+    /**
+     * Allows to define multiple entities for the mask
+     *
+     * @param names
+     * @returns
+     */
+    entities(names: Array<string>): Omit<this, 'entities' | 'entity'>;
+    id(id: string): Omit<this, 'id' | 'ids'>;
     /**
      * !!! NOTE: in case multiple versions provided ids Mask will be applied for ALL Versions
      * EXAMPLE:
@@ -17,8 +46,8 @@ export declare class A_ARC_EntityMaskQueryBuilder {
      * @param ids
      * @returns
      */
-    ids(ids: string[]): Omit<this, 'id'>;
-    version(v: string): Omit<this, 'versions'>;
+    ids(ids: string[]): Omit<this, 'id' | 'ids'>;
+    version(v: string): Omit<this, 'version' | 'versions'>;
     /**
      * !!! NOTE: in case multiple ids provided versions Mask will be applied for ALL IDs
      * EXAMPLE:
@@ -30,14 +59,11 @@ export declare class A_ARC_EntityMaskQueryBuilder {
      * @param vs
      * @returns
      */
-    versions(vs: string[]): Omit<this, 'version'>;
+    versions(vs: string[]): Omit<this, 'version' | 'versions'>;
+    next(): A_ARC_MaskQueryBuilder;
     allow: () => A_ARC_MaskQueryBuilder;
     deny: () => A_ARC_MaskQueryBuilder;
-    entity: (name: string) => A_ARC_EntityMaskQueryBuilder;
-    scope: (aseidOrId: string) => A_ARC_MaskQueryBuilder;
-    scopes: (aseidsOrIds: string[]) => A_ARC_MaskQueryBuilder;
     resource: (aseid: string) => A_ARC_MaskQueryBuilder;
-    resources: (aseids: string[]) => A_ARC_MaskQueryBuilder;
     action: (name: string) => A_ARC_MaskQueryBuilder;
     actions: (names: string[]) => A_ARC_MaskQueryBuilder;
     toString: () => string;
@@ -49,18 +75,25 @@ export declare class A_ARC_EntityMaskQueryBuilder {
  * for the further verification or rule creation
  */
 export declare class A_ARC_MaskQueryBuilder {
+    private _query?;
     private namespace;
     private _allow;
     private _deny;
     private _resources;
     private _actions;
+    constructor(_query?: string | undefined);
+    raw(query: string): void;
     allow(): this;
     deny(): this;
-    entity(name: string): A_ARC_EntityMaskQueryBuilder;
-    scope(aseidOrId: string): this;
-    scopes(aseidsOrIds: string[]): this;
     resource(aseid: string): this;
-    resources(aseids: string[]): this;
+    scope(idOrASEID: string): Omit<A_ARC_EntityMaskQueryBuilder, 'scopes' | 'scope'>;
+    scopes(idsOrASEIDs: string[]): Omit<A_ARC_EntityMaskQueryBuilder, 'scopes' | 'scope'>;
+    entity(name: string): Omit<A_ARC_EntityMaskQueryBuilder, 'entities' | 'entity'>;
+    entities(names: Array<string>): Omit<A_ARC_EntityMaskQueryBuilder, 'entities' | 'entity'>;
+    id(id: string): Omit<A_ARC_EntityMaskQueryBuilder, 'id' | 'ids'>;
+    ids(ids: string[]): Omit<A_ARC_EntityMaskQueryBuilder, 'id' | 'ids'>;
+    version(v: string): Omit<A_ARC_EntityMaskQueryBuilder, 'version' | 'versions'>;
+    versions(vs: string[]): Omit<A_ARC_EntityMaskQueryBuilder, 'version' | 'versions'>;
     action(name: string): this;
     actions(names: Array<string>): this;
     toString(): string;

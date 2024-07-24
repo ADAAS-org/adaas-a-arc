@@ -6,24 +6,86 @@ export class A_ARC_EntityMaskQueryBuilder {
 
     private _proxyParent!: A_ARC_MaskQueryBuilder;
 
+    private _scopes: Array<string> = [];
+    private _entities: Array<string> = [];
     private _ids: Array<string> = [];
     private _versions: Array<string> = [];
 
     constructor(
         private parent: A_ARC_MaskQueryBuilder,
-        private name: string
     ) {
     }
 
+    /**
+     * Allows to define a scope for the mask
+     * 
+     * @param idOrASEID 
+     * @returns 
+     */
+    scope(idOrASEID: string): Omit<this, 'scopes' | 'scope'> {
+        const scopeId = A_SDK_CommonHelper.isASEID(idOrASEID)
+            ? A_SDK_CommonHelper.parseASEID(idOrASEID).id
+            : idOrASEID;
 
-    id(id: string): Omit<this, 'ids'> {
-        if (this._ids.find(e => e === id)) {
-            return this;
-        }
-        else {
+        if (!this._scopes.find(e => e === scopeId))
+            this._scopes.push(scopeId);
+
+        return this;
+    }
+
+    /**
+     * Allows to define multiple scopes for the mask
+     * 
+     * @param idsOrASEIDs 
+     * @returns 
+     */
+    scopes(idsOrASEIDs: string[]): Omit<this, 'scopes' | 'scope'> {
+
+        const scopeIDS = idsOrASEIDs.map(idOrASEID =>
+            A_SDK_CommonHelper.isASEID(idOrASEID)
+                ? A_SDK_CommonHelper.parseASEID(idOrASEID).id
+                : idOrASEID
+        );
+
+        const shouldBeAdded = scopeIDS.filter(el => !this._scopes.find(e => e === el));
+
+        this._scopes.push(...shouldBeAdded);
+        return this;
+    }
+
+    /**
+     * Allows to define a single entity for the mask
+     * 
+     * @param name 
+     * @returns 
+     */
+    entity(name: string): Omit<this, 'entities' | 'entity'> {
+        if (!this._entities.find(e => e === name))
+            this._entities.push(name);
+
+        return this;
+    }
+
+
+    /**
+     * Allows to define multiple entities for the mask
+     * 
+     * @param names 
+     * @returns 
+     */
+    entities(names: Array<string>): Omit<this, 'entities' | 'entity'> {
+        const shouldBeAdded = names.filter(el => !this._entities.find(e => e === el));
+
+        this._entities.push(...shouldBeAdded);
+        return this;
+    }
+
+
+    id(id: string): Omit<this, 'id' | 'ids'> {
+        if (!this._ids.find(e => e === id))
             this._ids.push(id);
-            return this;
-        }
+
+        return this;
     }
 
     /**
@@ -37,7 +99,7 @@ export class A_ARC_EntityMaskQueryBuilder {
      * @param ids 
      * @returns 
      */
-    ids(ids: string[]): Omit<this, | 'id'> {
+    ids(ids: string[]): Omit<this, | 'id' | 'ids'> {
         const shouldBeAdded = ids.filter(el => !this._ids.find(e => e === el));
 
         this._ids.push(...shouldBeAdded);
@@ -45,14 +107,11 @@ export class A_ARC_EntityMaskQueryBuilder {
 
     }
 
-    version(v: string): Omit<this, 'versions'> {
-        if (this._versions.find(e => e === v)) {
-            return this;
-        }
-        else {
+    version(v: string): Omit<this, 'version' | 'versions'> {
+        if (!this._versions.find(e => e === v))
             this._versions.push(v);
-            return this;
-        }
+
+        return this;
     }
 
     /**
@@ -66,20 +125,21 @@ export class A_ARC_EntityMaskQueryBuilder {
      * @param vs
      * @returns 
      */
-    versions(vs: string[]): Omit<this, 'version'> {
+    versions(vs: string[]): Omit<this, 'version' | 'versions'> {
         const shouldBeAdded = vs.filter(el => !this._versions.find(e => e === el));
 
         this._versions.push(...shouldBeAdded);
         return this;
     }
 
+
+    next(): A_ARC_MaskQueryBuilder {
+        return this._proxyParent;
+    }
+
     allow = this.createProxy(this.parent).allow;
     deny = this.createProxy(this.parent).deny;
-    entity = this.createProxy(this.parent).entity;
-    scope = this.createProxy(this.parent).scope;
-    scopes = this.createProxy(this.parent).scopes;
     resource = this.createProxy(this.parent).resource;
-    resources = this.createProxy(this.parent).resources;
     action = this.createProxy(this.parent).action;
     actions = this.createProxy(this.parent).actions;
     toString = this.createProxy(this.parent).toString;
@@ -93,7 +153,9 @@ export class A_ARC_EntityMaskQueryBuilder {
                     const origMethod = obj[prop as keyof typeof obj];
                     if (typeof origMethod === 'function') {
                         return (...args: any[]) => {
-                            this.parent.resources(this.compile())
+                            this.compile().map(mask => {
+                                this.parent.resource(mask)
+                            });
 
                             // Call the original method
                             const result = (origMethod as any).apply(obj, args);
@@ -111,25 +173,18 @@ export class A_ARC_EntityMaskQueryBuilder {
     private compile(): Array<string> {
         const result: Array<string> = [];
 
-        if (this._ids.length) {
-            this._ids.forEach(id => {
-                if (this._versions.length) {
-                    this._versions.forEach(v => {
-                        result.push(`${this.name}:${id}@${v}`);
-                    });
-                } else {
-                    result.push(`${this.name}:${id}@*`);
+        this._scopes = this._scopes.length ? this._scopes : ['*'];
+        this._entities = this._entities.length ? this._entities : ['*'];
+        this._ids = this._ids.length ? this._ids : ['*'];
+        this._versions = this._versions.length ? this._versions : ['*'];
+
+        for (const scope of this._scopes) {
+            for (const entity of this._entities) {
+                for (const id of this._ids) {
+                    for (const version of this._versions) {
+                        result.push(`${scope}:${entity}:${id}@${version}`);
+                    }
                 }
-            });
-        }
-        else {
-            if (this._versions.length) {
-                this._versions.forEach(v => {
-                    result.push(`${this.name}:*@${v}`);
-                });
-            }
-            else {
-                result.push(`${this.name}:*@*`);
             }
         }
 
@@ -154,6 +209,17 @@ export class A_ARC_MaskQueryBuilder {
     private _actions: Array<string> = [];
 
 
+    constructor(
+        private _query?: string
+    ) {
+    }
+
+    raw(query: string) {
+        this._query = query;
+        return
+    }
+
+
     allow(): this {
         this._allow = true;
         this._deny = false;
@@ -170,45 +236,6 @@ export class A_ARC_MaskQueryBuilder {
     }
 
 
-    entity(name: string): A_ARC_EntityMaskQueryBuilder {
-        return new A_ARC_EntityMaskQueryBuilder(this, name);
-    }
-
-
-    scope(aseidOrId: string): this {
-        const scopeId = A_SDK_CommonHelper.isASEID(aseidOrId)
-            ? A_SDK_CommonHelper.parseASEID(aseidOrId).id
-            : aseidOrId;
-
-        const targetResourceMask = `${scopeId}:*:*@*`;
-
-        if (this._resources.find(e => e === targetResourceMask)) {
-            return this;
-        }
-        else {
-            this._resources.push(targetResourceMask);
-            return this;
-        }
-    }
-
-    scopes(aseidsOrIds: string[]): this {
-
-        aseidsOrIds.forEach(aseidOrId => {
-            const scopeId = A_SDK_CommonHelper.isASEID(aseidOrId)
-                ? A_SDK_CommonHelper.parseASEID(aseidOrId).id
-                : aseidOrId;
-
-            const targetResourceMask = `${scopeId}:*:*@*`;
-
-            if (!this._resources.find(e => e === targetResourceMask)) {
-                this._resources.push(targetResourceMask);
-            }
-        });
-
-        return this;
-    }
-
-
     resource(aseid: string): this {
         if (this._resources.find(e => e === aseid)) {
             return this;
@@ -219,13 +246,39 @@ export class A_ARC_MaskQueryBuilder {
         }
     }
 
-
-    resources(aseids: string[]): this {
-        const shouldBeAdded = aseids.filter(el => !this._resources.find(e => e === el));
-
-        this._resources.push(...shouldBeAdded);
-        return this;
+    scope(idOrASEID: string): Omit<A_ARC_EntityMaskQueryBuilder, 'scopes' | 'scope'> {
+        return new A_ARC_EntityMaskQueryBuilder(this).scope(idOrASEID);
     }
+
+    scopes(idsOrASEIDs: string[]): Omit<A_ARC_EntityMaskQueryBuilder, 'scopes' | 'scope'> {
+        return new A_ARC_EntityMaskQueryBuilder(this).scopes(idsOrASEIDs);
+    }
+
+    entity(name: string): Omit<A_ARC_EntityMaskQueryBuilder, 'entities' | 'entity'> {
+        return new A_ARC_EntityMaskQueryBuilder(this).entity(name);
+    }
+
+    entities(names: Array<string>): Omit<A_ARC_EntityMaskQueryBuilder, 'entities' | 'entity'> {
+        return new A_ARC_EntityMaskQueryBuilder(this).entities(names);
+    }
+
+    id(id: string): Omit<A_ARC_EntityMaskQueryBuilder, 'id' | 'ids'> {
+        return new A_ARC_EntityMaskQueryBuilder(this).id(id);
+    }
+
+    ids(ids: string[]): Omit<A_ARC_EntityMaskQueryBuilder, 'id' | 'ids'> {
+        return new A_ARC_EntityMaskQueryBuilder(this).ids(ids);
+    }
+
+    version(v: string): Omit<A_ARC_EntityMaskQueryBuilder, 'version' | 'versions'> {
+        return new A_ARC_EntityMaskQueryBuilder(this).version(v);
+    }
+
+    versions(vs: string[]): Omit<A_ARC_EntityMaskQueryBuilder, 'version' | 'versions'> {
+        return new A_ARC_EntityMaskQueryBuilder(this).versions(vs);
+    }
+
+
 
     action(name: string) {
         if (this._actions.find(e => e === name)) {
@@ -247,7 +300,9 @@ export class A_ARC_MaskQueryBuilder {
 
 
     toString() {
-        return `${this.namespace
+        return this._query
+            ? this._query
+            : `${this.namespace
             }@${this._resources.length
                 ? this._resources.length > 1
                     ? `(${this._resources.join('|')})`
