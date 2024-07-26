@@ -82,6 +82,12 @@ export declare class A_ARC_MaskQueryBuilder {
     private _resources;
     private _actions;
     constructor(_query?: string | undefined);
+    get Namespace(): string;
+    get Scopes(): string[];
+    get Entities(): string[];
+    get IDs(): string[];
+    get Versions(): string[];
+    get Actions(): string[];
     raw(query: string): void;
     allow(): this;
     deny(): this;

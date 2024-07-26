@@ -17,4 +17,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./acl/A_ARC_ACL.types"), exports);
 __exportStar(require("./resource/A_ARC_Resource.types"), exports);
 __exportStar(require("./scope/A_ARC_Scope.types"), exports);
+__exportStar(require("./permission/A_ARC_Permission.types"), exports);
 //# sourceMappingURL=index.types.js.map

@@ -165,6 +165,24 @@ class A_ARC_MaskQueryBuilder {
         this._resources = [];
         this._actions = [];
     }
+    get Namespace() {
+        return this.namespace;
+    }
+    get Scopes() {
+        return this._resources.map(e => e.split(':')[0]);
+    }
+    get Entities() {
+        return this._resources.map(e => e.split(':')[1]);
+    }
+    get IDs() {
+        return this._resources.map(e => e.split(':')[2]);
+    }
+    get Versions() {
+        return this._resources.map(e => e.split('@')[1]);
+    }
+    get Actions() {
+        return this._actions;
+    }
     raw(query) {
         this._query = query;
         return;
