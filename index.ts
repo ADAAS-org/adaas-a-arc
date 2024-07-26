@@ -13,6 +13,9 @@ export {
     A_ARC_EntityMaskQueryBuilder,
     A_ARC_MaskQueryBuilder
 } from './src/lib/A_ARC_MaskQueryBuilder.class'
+export {
+    A_ARC_Permission
+} from './src/lib/A_ARC_Permission.class'
 
 
 
