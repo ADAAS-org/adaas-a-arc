@@ -21,7 +21,7 @@ export class A_ARC_SERVER_COMMANDS__PermissionAPI extends A_AUTH_ServerCommands_
 
 
     async migrate<M = any>(
-        request: A_ARC_SERVER_COMMANDS_TYPES__PermissionMigrateRequest[],
+        request: A_ARC_SERVER_COMMANDS_TYPES__PermissionMigrateRequest,
         config?: A_AUTH_TYPES__APIProviderRequestConfig<M>
     ) {
         return await this

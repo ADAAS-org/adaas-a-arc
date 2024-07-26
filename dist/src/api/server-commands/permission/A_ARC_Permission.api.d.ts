@@ -3,7 +3,7 @@ import { A_ARC_ContextClass } from "../../../global/A_ARC_Context.class";
 import { A_ARC_SERVER_COMMANDS_TYPES__PermissionCreateRequest, A_ARC_SERVER_COMMANDS_TYPES__PermissionCreateResponse, A_ARC_SERVER_COMMANDS_TYPES__PermissionMigrateRequest, A_ARC_SERVER_COMMANDS_TYPES__PermissionMigrateResponse, A_ARC_SERVER_COMMANDS_TYPES__PermissionRemoveRequest, A_ARC_SERVER_COMMANDS_TYPES__PermissionRemoveResponse } from "./A_ARC_Permission.types";
 export declare class A_ARC_SERVER_COMMANDS__PermissionAPI extends A_AUTH_ServerCommands_APIProvider<A_ARC_ContextClass> {
     protected baseURL: string;
-    migrate<M = any>(request: A_ARC_SERVER_COMMANDS_TYPES__PermissionMigrateRequest[], config?: A_AUTH_TYPES__APIProviderRequestConfig<M>): Promise<A_ARC_SERVER_COMMANDS_TYPES__PermissionMigrateResponse[]>;
+    migrate<M = any>(request: A_ARC_SERVER_COMMANDS_TYPES__PermissionMigrateRequest, config?: A_AUTH_TYPES__APIProviderRequestConfig<M>): Promise<A_ARC_SERVER_COMMANDS_TYPES__PermissionMigrateResponse[]>;
     /**
      *
      *
