@@ -5,7 +5,7 @@ class A_ARC_Permission {
     constructor(param) {
         this.name = param.name;
         this.code = param.code;
-        this.mask = param.mask;
+        this.masks = param.masks;
         this.description = param.description;
         this.icon = param.icon;
     }
@@ -13,9 +13,11 @@ class A_ARC_Permission {
         return {
             name: this.name,
             code: this.code,
-            mask: this.mask.toString(),
             description: this.description,
             icon: this.icon,
+            Masks: this.masks.map(mask => ({
+                mask: mask.toString()
+            })),
         };
     }
 }
