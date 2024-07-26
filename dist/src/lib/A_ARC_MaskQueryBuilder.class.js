@@ -159,14 +159,14 @@ exports.A_ARC_EntityMaskQueryBuilder = A_ARC_EntityMaskQueryBuilder;
 class A_ARC_MaskQueryBuilder {
     constructor(_query) {
         this._query = _query;
-        this.namespace = a_sdk_types_1.A_SDK_Context.namespace;
+        this._namespace = a_sdk_types_1.A_SDK_Context.namespace;
         this._allow = true;
         this._deny = false;
         this._resources = [];
         this._actions = [];
     }
     get Namespace() {
-        return this.namespace;
+        return this._namespace;
     }
     get Scopes() {
         return this._resources.map(e => e.split(':')[0]);
@@ -195,6 +195,16 @@ class A_ARC_MaskQueryBuilder {
     deny() {
         this._allow = false;
         this._deny = true;
+        return this;
+    }
+    /**
+     * Not mandatory to use, but allows to define a namespace for the mask
+     *
+     * @param ns
+     * @returns
+     */
+    namespace(ns) {
+        this._namespace = ns;
         return this;
     }
     resource(aseid) {
@@ -247,7 +257,7 @@ class A_ARC_MaskQueryBuilder {
     toString() {
         return this._query
             ? this._query
-            : `${this.namespace}@${this._resources.length
+            : `${this._namespace}@${this._resources.length
                 ? this._resources.length > 1
                     ? `(${this._resources.join('|')})`
                     : this._resources[0]

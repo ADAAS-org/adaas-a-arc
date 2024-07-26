@@ -76,7 +76,7 @@ export declare class A_ARC_EntityMaskQueryBuilder {
  */
 export declare class A_ARC_MaskQueryBuilder {
     private _query?;
-    private namespace;
+    private _namespace;
     private _allow;
     private _deny;
     private _resources;
@@ -91,6 +91,13 @@ export declare class A_ARC_MaskQueryBuilder {
     raw(query: string): void;
     allow(): this;
     deny(): this;
+    /**
+     * Not mandatory to use, but allows to define a namespace for the mask
+     *
+     * @param ns
+     * @returns
+     */
+    namespace(ns: string): this;
     resource(aseid: string): this;
     scope(idOrASEID: string): Omit<A_ARC_EntityMaskQueryBuilder, 'scopes' | 'scope'>;
     scopes(idsOrASEIDs: string[]): Omit<A_ARC_EntityMaskQueryBuilder, 'scopes' | 'scope'>;
