@@ -12,7 +12,9 @@ import { A_SDK_TYPES__Required } from "@adaas/a-sdk-types";
 
 export class A_ARC_SERVER_DELEGATE__ACLAPI extends A_AUTH_ServerDelegate_APIProvider<A_ARC_ContextClass> {
 
-    protected baseURL: string = this.context.getConfigurationProperty<string>('API_LOCATION');
+    protected get baseURL(): string {
+        return this.context.getConfigurationProperty('API_LOCATION');
+    }
 
     /**
      * Verify the Access to requested resource or operation for the application  

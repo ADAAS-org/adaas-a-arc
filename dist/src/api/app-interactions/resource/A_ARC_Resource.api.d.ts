@@ -5,7 +5,7 @@ import { A_ARC_APP_INTERACTIONS_TYPES__ResourceCreateRequest, A_ARC_APP_INTERACT
  * API Provider for Resources
  */
 export declare class A_ARC_APP_INTERACTIONS__ResourceAPI extends A_AUTH_AppInteractions_APIProvider<A_ARC_ContextClass> {
-    protected baseURL: string;
+    protected get baseURL(): string;
     /**
      * Returns list of resources based on User Access
      *

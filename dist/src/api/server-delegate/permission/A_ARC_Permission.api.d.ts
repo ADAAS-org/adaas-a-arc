@@ -3,7 +3,7 @@ import { A_ARC_ContextClass } from "../../../global/A_ARC_Context.class";
 import { A_ARC_SERVER_DELEGATE_TYPES__PermissionCreateRequest, A_ARC_SERVER_DELEGATE_TYPES__PermissionCreateResponse, A_ARC_SERVER_DELEGATE_TYPES__PermissionRemoveRequest, A_ARC_SERVER_DELEGATE_TYPES__PermissionRemoveResponse } from "./A_ARC_Permission.types";
 import { A_SDK_TYPES__Required } from "@adaas/a-sdk-types";
 export declare class A_ARC_SERVER_DELEGATE__PermissionAPI extends A_AUTH_ServerDelegate_APIProvider<A_ARC_ContextClass> {
-    protected baseURL: string;
+    protected get baseURL(): string;
     /**
      *
      *

@@ -12,9 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.A_ARC_SERVER_DELEGATE__ACLAPI = void 0;
 const a_auth_1 = require("@adaas/a-auth");
 class A_ARC_SERVER_DELEGATE__ACLAPI extends a_auth_1.A_AUTH_ServerDelegate_APIProvider {
-    constructor() {
-        super(...arguments);
-        this.baseURL = this.context.getConfigurationProperty('API_LOCATION');
+    get baseURL() {
+        return this.context.getConfigurationProperty('API_LOCATION');
     }
     /**
      * Verify the Access to requested resource or operation for the application

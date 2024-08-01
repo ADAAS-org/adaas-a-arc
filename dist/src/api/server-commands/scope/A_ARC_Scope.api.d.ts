@@ -2,7 +2,7 @@ import { A_AUTH_ServerCommands_APIProvider, A_AUTH_TYPES__APIProviderRequestConf
 import { A_ARC_ContextClass } from "../../../global/A_ARC_Context.class";
 import { A_ARC_SERVER_COMMANDS_TYPES__ScopeCreateRequest, A_ARC_SERVER_COMMANDS_TYPES__ScopeDeleteRequest, A_ARC_SERVER_COMMANDS_TYPES__ScopeDeleteResponse, A_ARC_SERVER_COMMANDS_TYPES__ScopeExistsRequest, A_ARC_SERVER_COMMANDS_TYPES__ScopeExistsResponse, A_ARC_SERVER_COMMANDS_TYPES__ScopeListRequest, A_ARC_SERVER_COMMANDS_TYPES__ScopeListResponse } from "./A_ARC_Scope.types";
 export declare class A_ARC_SERVER_COMMANDS__ScopeAPI extends A_AUTH_ServerCommands_APIProvider<A_ARC_ContextClass> {
-    protected baseURL: string;
+    protected get baseURL(): string;
     /**
      * Returns a list of scopes to which the Application has access
      *

@@ -5,7 +5,7 @@ import { A_ARC_APP_INTERACTIONS_TYPES__ScopeCreateRequest, A_ARC_APP_INTERACTION
  * API Provider for Scopes
  */
 export declare class A_ARC_APP_INTERACTIONS__ScopeAPI extends A_AUTH_AppInteractions_APIProvider<A_ARC_ContextClass> {
-    protected baseURL: string;
+    protected get baseURL(): string;
     /**
      * Returns list of scopes based on User Access
      *

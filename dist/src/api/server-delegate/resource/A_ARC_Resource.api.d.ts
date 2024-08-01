@@ -3,7 +3,7 @@ import { A_ARC_ContextClass } from "../../../global/A_ARC_Context.class";
 import { A_ARC_SERVER_DELEGATE_TYPES__ResourceCreateRequest, A_ARC_SERVER_DELEGATE_TYPES__ResourceDeleteRequest, A_ARC_SERVER_DELEGATE_TYPES__ResourceDeleteResponse, A_ARC_SERVER_DELEGATE_TYPES__ResourceExistsRequest, A_ARC_SERVER_DELEGATE_TYPES__ResourceExistsResponse, A_ARC_SERVER_DELEGATE_TYPES__ResourceListRequest, A_ARC_SERVER_DELEGATE_TYPES__ResourceListResponse } from "./A_ARC_Resource.types";
 import { A_SDK_TYPES__Required } from "@adaas/a-sdk-types";
 export declare class A_ARC_SERVER_DELEGATE__ResourceAPI extends A_AUTH_ServerDelegate_APIProvider<A_ARC_ContextClass> {
-    protected baseURL: string;
+    protected get baseURL(): string;
     /**
      * Returns a list of resources to which the Application has access
      *

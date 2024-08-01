@@ -15,8 +15,9 @@ import {
  */
 export class A_ARC_APP_INTERACTIONS__ACLAPI extends A_AUTH_AppInteractions_APIProvider<A_ARC_ContextClass> {
 
-    protected baseURL: string = this.context.getConfigurationProperty<string>('API_LOCATION');
-
+    protected get baseURL(): string {
+        return this.context.getConfigurationProperty('API_LOCATION');
+    }
 
     /**
      * Returns list of acls based on User Access

@@ -15,9 +15,8 @@ const a_auth_1 = require("@adaas/a-auth");
  * API Provider for Scopes
  */
 class A_ARC_APP_INTERACTIONS__ScopeAPI extends a_auth_1.A_AUTH_AppInteractions_APIProvider {
-    constructor() {
-        super(...arguments);
-        this.baseURL = this.context.getConfigurationProperty('API_LOCATION');
+    get baseURL() {
+        return this.context.getConfigurationProperty('API_LOCATION');
     }
     /**
      * Returns list of scopes based on User Access

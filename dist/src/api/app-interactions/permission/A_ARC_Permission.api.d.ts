@@ -5,7 +5,7 @@ import { A_ARC_APP_INTERACTIONS_TYPES__PermissionCreateRequest, A_ARC_APP_INTERA
  * API Provider for Permissions
  */
 export declare class A_ARC_APP_INTERACTIONS__PermissionAPI extends A_AUTH_AppInteractions_APIProvider<A_ARC_ContextClass> {
-    protected baseURL: string;
+    protected get baseURL(): string;
     /**
      * Returns list of permissions based on User Access
      *

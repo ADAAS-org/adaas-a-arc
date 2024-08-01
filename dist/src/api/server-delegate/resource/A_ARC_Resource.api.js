@@ -12,9 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.A_ARC_SERVER_DELEGATE__ResourceAPI = void 0;
 const a_auth_1 = require("@adaas/a-auth");
 class A_ARC_SERVER_DELEGATE__ResourceAPI extends a_auth_1.A_AUTH_ServerDelegate_APIProvider {
-    constructor() {
-        super(...arguments);
-        this.baseURL = this.context.getConfigurationProperty('API_LOCATION');
+    get baseURL() {
+        return this.context.getConfigurationProperty('API_LOCATION');
     }
     /**
      * Returns a list of resources to which the Application has access

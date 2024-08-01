@@ -15,9 +15,8 @@ const a_auth_1 = require("@adaas/a-auth");
  * API Provider for Permissions
  */
 class A_ARC_APP_INTERACTIONS__PermissionAPI extends a_auth_1.A_AUTH_AppInteractions_APIProvider {
-    constructor() {
-        super(...arguments);
-        this.baseURL = this.context.getConfigurationProperty('API_LOCATION');
+    get baseURL() {
+        return this.context.getConfigurationProperty('API_LOCATION');
     }
     /**
      * Returns list of permissions based on User Access

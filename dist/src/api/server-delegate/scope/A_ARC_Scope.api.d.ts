@@ -3,7 +3,7 @@ import { A_ARC_ContextClass } from "../../../global/A_ARC_Context.class";
 import { A_ARC_SERVER_DELEGATE_TYPES__ScopeCreateRequest, A_ARC_SERVER_DELEGATE_TYPES__ScopeDeleteRequest, A_ARC_SERVER_DELEGATE_TYPES__ScopeDeleteResponse, A_ARC_SERVER_DELEGATE_TYPES__ScopeExistsRequest, A_ARC_SERVER_DELEGATE_TYPES__ScopeExistsResponse, A_ARC_SERVER_DELEGATE_TYPES__ScopeListRequest, A_ARC_SERVER_DELEGATE_TYPES__ScopeListResponse } from "./A_ARC_Scope.types";
 import { A_SDK_TYPES__Required } from "@adaas/a-sdk-types";
 export declare class A_ARC_SERVER_DELEGATE__ScopeAPI extends A_AUTH_ServerCommands_APIProvider<A_ARC_ContextClass> {
-    protected baseURL: string;
+    protected get baseURL(): string;
     /**
      * Returns a list of scopes to which the Application has access
      *

@@ -16,8 +16,9 @@ import {
 
 export class A_ARC_SERVER_COMMANDS__PermissionAPI extends A_AUTH_ServerCommands_APIProvider<A_ARC_ContextClass> {
 
-    protected baseURL: string = this.context.getConfigurationProperty<string>('API_LOCATION');
-
+    protected get baseURL(): string {
+        return this.context.getConfigurationProperty('API_LOCATION');
+    }
 
 
     async migrate<M = any>(

@@ -5,7 +5,7 @@ import { A_ARC_APP_INTERACTIONS_TYPES__ACLCreateRequest, A_ARC_APP_INTERACTIONS_
  * API Provider for ACLs
  */
 export declare class A_ARC_APP_INTERACTIONS__ACLAPI extends A_AUTH_AppInteractions_APIProvider<A_ARC_ContextClass> {
-    protected baseURL: string;
+    protected get baseURL(): string;
     /**
      * Returns list of acls based on User Access
      *
