@@ -34,7 +34,8 @@
       "@adaas/a-sdk/api/*": ["src/api/*"],
       "@adaas/a-sdk/global/*": ["src/global/*"],
       "@adaas/a-sdk/types/*": ["src/types/*"],
-      "@adaas/a-sdk/helpers/*": ["src/helpers/*"]
+      "@adaas/a-sdk/helpers/*": ["src/helpers/*"],
+      "@adaas/a-sdk/definitions/*": ["src/definitions/*"]
     },
     "lib": [
       "dom",

@@ -35,6 +35,12 @@ export class A_ARC_ContextClass extends A_AUTH_ContextClass {
         });
     }
 
+    protected async awaitNestedDependencies(): Promise<void> {
+        await this.global.ready;
+
+        await this.auth.ready;
+    }
+
 
     getConfigurationProperty<T = any>(
         property: typeof this.accountContextAllowedProperties[number]
@@ -71,5 +77,3 @@ export class A_ARC_ContextClass extends A_AUTH_ContextClass {
     }
 }
 
-
-export const A_ARC_Context = new A_ARC_ContextClass()

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.A_ARC_Context = exports.A_ARC_ContextClass = void 0;
+exports.A_ARC_ContextClass = void 0;
 const a_auth_1 = require("@adaas/a-auth");
 const a_sdk_types_1 = require("@adaas/a-sdk-types");
 const errors_constants_1 = require("../constants/errors.constants");
@@ -31,6 +31,12 @@ class A_ARC_ContextClass extends a_auth_1.A_AUTH_ContextClass {
             ...this.authContextAllowedProperties,
             "API_LOCATION"
         ];
+    }
+    awaitNestedDependencies() {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.global.ready;
+            yield this.auth.ready;
+        });
     }
     getConfigurationProperty(property) {
         if (this.accountContextAllowedProperties.includes(property))
@@ -64,5 +70,4 @@ class A_ARC_ContextClass extends a_auth_1.A_AUTH_ContextClass {
     }
 }
 exports.A_ARC_ContextClass = A_ARC_ContextClass;
-exports.A_ARC_Context = new A_ARC_ContextClass();
 //# sourceMappingURL=A_ARC_Context.class.js.map

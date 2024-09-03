@@ -26,10 +26,12 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.A_ARC_CONSTANTS__DEFAULT_CRUD_ACTIONS = exports.A_ARC_CONSTANTS__ERROR_CODES = exports.A_ARC_CONSTANTS__DEFAULT_ERRORS = exports.A_ARC_Permission = exports.A_ARC_MaskQueryBuilder = exports.A_ARC_EntityMaskQueryBuilder = exports.A_ARC_ServerDelegate = exports.A_ARC_ServerCommands = exports.A_ARC_AppInteractions = exports.A_ARC_Context = void 0;
-var A_ARC_Context_class_1 = require("./src/global/A_ARC_Context.class");
-Object.defineProperty(exports, "A_ARC_Context", { enumerable: true, get: function () { return A_ARC_Context_class_1.A_ARC_Context; } });
+exports.A_ARC_CONSTANTS__DEFAULT_CRUD_ACTIONS = exports.A_ARC_CONSTANTS__ERROR_CODES = exports.A_ARC_CONSTANTS__DEFAULT_ERRORS = exports.A_ARC_Permission = exports.A_ARC_MaskQueryBuilder = exports.A_ARC_EntityMaskQueryBuilder = exports.A_ARC_ServerDelegate = exports.A_ARC_ServerCommands = exports.A_ARC_AppInteractions = exports.A_ARC_ContextClass = exports.A_ARC_Context = void 0;
+var A_ARC_Context_def_1 = require("./src/definitions/A_ARC_Context.def");
+Object.defineProperty(exports, "A_ARC_Context", { enumerable: true, get: function () { return A_ARC_Context_def_1.A_ARC_Context; } });
 // ============ Export Global & Service Entities ============
+var A_ARC_Context_class_1 = require("./src/global/A_ARC_Context.class");
+Object.defineProperty(exports, "A_ARC_ContextClass", { enumerable: true, get: function () { return A_ARC_Context_class_1.A_ARC_ContextClass; } });
 // ================== API ==================
 exports.A_ARC_AppInteractions = __importStar(require("./src/api/app-interactions"));
 exports.A_ARC_ServerCommands = __importStar(require("./src/api/server-commands"));

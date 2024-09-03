@@ -1,4 +1,5 @@
-export { A_ARC_Context } from './src/global/A_ARC_Context.class';
+export { A_ARC_Context } from './src/definitions/A_ARC_Context.def';
+export { A_ARC_ContextClass } from './src/global/A_ARC_Context.class';
 export * as A_ARC_AppInteractions from './src/api/app-interactions';
 export * as A_ARC_ServerCommands from './src/api/server-commands';
 export * as A_ARC_ServerDelegate from './src/api/server-delegate';
